@@ -15,12 +15,12 @@ public class BlockingQueueImpl {
     }
 
     public synchronized void put(Object item) throws InterruptedException  {
-        //TODO...
+        //TODO: Implement a put() method that replicates the behavior of the same method in BlockingQueue
     }
 
 
     public synchronized Object take() throws InterruptedException {
-        //TODO...
+        //TODO: Implement a take() method that replicates the behavior of the same method in BlockingQueue
         return queue.remove(0);
     }
 
