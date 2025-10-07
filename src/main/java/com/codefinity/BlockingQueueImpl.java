@@ -8,6 +8,7 @@ public class BlockingQueueImpl {
     private int limit = 10;
 
     public BlockingQueueImpl() {
+
     }
 
     public BlockingQueueImpl(int limit){
@@ -16,11 +17,22 @@ public class BlockingQueueImpl {
 
     public synchronized void put(Object item) throws InterruptedException  {
         //TODO: Implement a put() method that replicates the behavior of the same method in BlockingQueue
+        while(queue.size() == limit) {
+            wait();
+        }
+        notifyAll();
+        queue.add(item);
     }
 
 
     public synchronized Object take() throws InterruptedException {
         //TODO: Implement a take() method that replicates the behavior of the same method in BlockingQueue
+        while(queue.isEmpty()) {
+            wait();
+        }
+        if (!queue.isEmpty() && limit == queue.size()) {
+            notifyAll();
+        }
         return queue.remove(0);
     }
 
